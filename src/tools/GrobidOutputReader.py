@@ -77,18 +77,36 @@ class GrobidOutputReader:
             # if there is a headline, add it to the final_text
             if d.head:
                 final_text += d.head.text
-                final_text += '\n'
+                if divide_by_headline:
+                    final_text += '\n'
+                else:
+                    final_text += ' '
                 d_s = d.find_all('s')
+
                 for s in d_s:
                     final_text += s.text+" "
-                final_text += '\n'
+
+                if divide_by_headline:
+                    final_text += '\n'
+                else:
+                    final_text += ' '
+           
             # if there is no headline, add "No Headline" to the final_text
             else:
                 final_text += 'No Headline'
-                final_text += '\n'
+
+                if divide_by_headline:
+                    final_text += '\n'
+                else:
+                    final_text += ' '
+
                 d_s = d.find_all('s')
                 for s in d_s:
                     final_text += s.text+" "
-                final_text += '\n'
 
+                if divide_by_headline:
+                    final_text += '\n'
+                else:
+                    final_text += ' '
+                    
         return final_text
