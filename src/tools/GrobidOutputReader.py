@@ -68,55 +68,36 @@ class GrobidOutputReader:
                     final_text += ' '
         except:
             pass
-        
+
         # find all divs
         all_div = soup.body.find_all('div')
 
-        # loop through all divs
-        for d in all_div:
-            # if there is a headline, add it to the final_text
-            if d.head:
-                final_text += d.head.text
-                if divide_by_headline:
+        if divide_by_headline:
+            # loop through all divs
+            for d in all_div:
+                # if there is a headline, add it to the final_text
+                if d.head:
+                    final_text += d.head.text + ': \n'
+
+                    d_s = d.find_all('s')
+
+                    for s in d_s:
+                        final_text += s.text+" "
+
                     final_text += '\n'
+                # if there is no headline, add "No Headline" to the final_text
                 else:
-                    final_text += ' '
-                d_s = d.find_all('s')
+                    final_text += 'No Headline:'+ '\n'
 
-                for s in d_s:
-                    final_text += s.text+" "
+                    d_s = d.find_all('s')
+                    for s in d_s:
+                        final_text += s.text+" "
 
-                if divide_by_headline:
                     final_text += '\n'
-                else:
-                    final_text += ' '
-           
-            # if there is no headline, add "No Headline" to the final_text
-            else:
-                final_text += 'No Headline'
-
-                if divide_by_headline:
-                    final_text += '\n'
-                else:
-                    final_text += ' '
-
+        else:
+            for d in all_div:
                 d_s = d.find_all('s')
                 for s in d_s:
                     final_text += s.text+" "
 
-                if divide_by_headline:
-                    final_text += '\n'
-                else:
-                    final_text += ' '
-                    
         return final_text
-
-# %%
-# test the class
-grobid_output_reader = GrobidOutputReader()
-# %%
-result = grobid_output_reader.XMLtoText(r"C:\Users\norouzin\Desktop\Codes\src-ssc-knowdelge-graph\src\tools\ENG00011.tei.xml")
-
-# %%
-print(result)
-# %%
