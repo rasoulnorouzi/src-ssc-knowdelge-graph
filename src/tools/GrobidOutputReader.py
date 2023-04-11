@@ -1,9 +1,4 @@
-import numpy as np
-import pandas as pd
-import re
 from bs4 import BeautifulSoup as bs
-import os
-
 
 class GrobidOutputReader:
 
@@ -17,7 +12,7 @@ class GrobidOutputReader:
     
     """
 
-    def init(self, parser: str = 'lxml-xml'):
+    def __init__(self, parser = "lxml-xml"):
         self.parser = parser
 
 
@@ -61,11 +56,16 @@ class GrobidOutputReader:
         # if there is an abstract, add it to the final_text
         try :
             if soup.abstract:
-                final_text += 'Abstract: \n'
+                if divide_by_headline:
+                    final_text += 'Abstract: \n'
+                    
                 abstract_s = soup.abstract.find_all('s')
                 for s in abstract_s:
                     final_text += s.text+" "
-                final_text += '\n'  
+                if divide_by_headline:
+                    final_text += '\n'
+                else:
+                    final_text += ' '
         except:
             pass
 
