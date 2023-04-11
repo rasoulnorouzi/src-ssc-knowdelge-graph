@@ -56,9 +56,9 @@ class GrobidOutputReader:
         # if there is an abstract, add it to the final_text
         try :
             if soup.abstract:
+
                 if divide_by_headline:
                     final_text += 'Abstract: \n'
-                    
                 abstract_s = soup.abstract.find_all('s')
                 for s in abstract_s:
                     final_text += s.text+" "
@@ -68,7 +68,7 @@ class GrobidOutputReader:
                     final_text += ' '
         except:
             pass
-
+        
         # find all divs
         all_div = soup.body.find_all('div')
 
@@ -110,3 +110,13 @@ class GrobidOutputReader:
                     final_text += ' '
                     
         return final_text
+
+# %%
+# test the class
+grobid_output_reader = GrobidOutputReader()
+# %%
+result = grobid_output_reader.XMLtoText(r"C:\Users\norouzin\Desktop\Codes\src-ssc-knowdelge-graph\src\tools\ENG00011.tei.xml")
+
+# %%
+print(result)
+# %%
