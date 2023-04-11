@@ -21,7 +21,7 @@ class GrobidOutputReader:
         self.parser = parser
 
 
-    def xmlTOtext(self, xml_file, divide_by_headline = True):
+    def XMLtoText(self, xml_file, divide_by_headline = True):
         """
             Reads the xml file and converts it to a plain text file.
 
