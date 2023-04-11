@@ -85,7 +85,7 @@ class GrobidOutputReader:
                         final_text += s.text+" "
 
                     final_text += '\n'
-                # if there is no headline, add "No Headline" to the final_text
+                # if there is no headline, add "No Headline:" to the final_text
                 else:
                     final_text += 'No Headline:'+ '\n'
 
