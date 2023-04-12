@@ -207,5 +207,3 @@ class GrobidOutputReader:
                 'keywords': keywords_list,
                 'sentences': sentences_list
                 }
-
-                
