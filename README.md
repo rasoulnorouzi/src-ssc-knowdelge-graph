@@ -13,5 +13,3 @@ The purpose of this project is to contribute to the field of social science rese
 ## Contribution
 
 ## License
-
-
