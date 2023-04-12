@@ -20,12 +20,19 @@ class GrobidOutputReader:
         """
             Reads the xml file and converts it to a plain text file.
 
-            :param xml_file: The path to the xml file.
-            :type xml_file: str
-            :param divide_by_headline: If True, the text will be divided by headlines. Default is True.
-            :type divide_by_headline: bool
-            :return: The plain text file.
-            :rtype: str
+            Parameters
+            ----------
+            xml_file : str
+                The path to the xml file.
+                Note: Its better to use the absolute path with r before the path.
+            divide_by_headline : bool, optional
+                If True, the text will be divided by headlines. The default is True.
+
+            Returns
+            -------
+            str
+                The plain text file.
+
         """
 
         # read the xml file
@@ -101,3 +108,104 @@ class GrobidOutputReader:
                     final_text += s.text+" "
 
         return final_text
+    
+
+    def XMLtoDict(self, path):
+
+        """
+            Reads the xml file and converts it to a dictionary.
+
+            Parameters
+            ----------
+            path : str
+                The path to the xml file.
+                Note: Its better to use the absolute path with r before the path.
+
+            Returns
+            -------
+            dict
+                The dictionary with the following keys:
+                title: str
+                    The title of the paper.
+                doi: str
+                    The doi of the paper.
+                md5: str
+                    The md5 of the paper.
+                authors: list
+                    The list of authors of the paper with forename and surname.
+                keywords: list
+                    The list of keywords of the paper.
+                date: str
+                    The date of the paper.
+                sentences: list 
+                    The list of sentences of the paper.
+            
+        """
+
+        with open(path) as f:
+            text = f.read()
+
+        soup = bs(text, self.parser)
+
+        # paper title
+        title = soup.title
+        if title:
+            title = title.text
+        else:
+            title = "No Title"
+
+        # paper doi
+        idno_doi = soup.find('idno', type='DOI')
+        if idno_doi:
+            idno_doi = idno_doi.text
+        else:
+            idno_doi = "No DOI"
+
+        # paper md5
+        idno_md5 = soup.find('idno', type='MD5')
+        if idno_md5:
+            idno_md5 = idno_md5.text
+        else:
+            idno_md5 = "No MD5"
+
+        # paper date
+        date_tag = soup.find('date')
+        if date_tag:
+            date = date_tag.get('when')
+        else:
+            date = "No Date"
+
+        # paper authors
+        sourceDesc = soup.sourceDesc
+        if sourceDesc:
+            persName = sourceDesc.find_all('persName')
+            authors_list = [{'forename': author.forename.text, 'surname': author.surname.text} for author in persName]
+        else:
+            authors_list = ["No Authors"]
+        
+        
+        # paper keywords
+        keywords = soup.find_all('term')
+        if keywords:
+            keywords_list = [keyword.text for keyword in keywords]
+        else:
+            keywords_list = ["No Keywords"]
+
+        # paper sentences
+        sentences = soup.find_all('s')
+        if sentences:
+            sentences_list = [sentence.text for sentence in sentences if sentence]
+        else:
+            sentences_list = ["No Sentences"]
+
+        return {
+                'title': title,
+                'doi': idno_doi,
+                'md5': idno_md5,
+                'date': date,
+                'authors': authors_list,
+                'keywords': keywords_list,
+                'sentences': sentences_list
+                }
+
+                
