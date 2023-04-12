@@ -1,3 +1,4 @@
+
 from bs4 import BeautifulSoup as bs
 
 class GrobidOutputReader:
@@ -207,8 +208,3 @@ class GrobidOutputReader:
                 'keywords': keywords_list,
                 'sentences': sentences_list
                 }
-    
-    
-    
-    
-   
