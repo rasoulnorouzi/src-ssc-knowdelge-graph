@@ -1,6 +1,7 @@
 class causalityExtractor:
     def __init__(
-                self, model, tokenizer, threshold=0.9, batch_size=32):
+                self, model, tokenizer, threshold=0.9, batch_size=32
+                ):
         
         self.model = model
         self.tokenizer = tokenizer
