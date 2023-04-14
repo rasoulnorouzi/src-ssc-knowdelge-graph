@@ -1,5 +1,6 @@
-
 from bs4 import BeautifulSoup as bs
+from textblob import Word
+import re
 
 class GrobidOutputReader:
 
@@ -10,11 +11,45 @@ class GrobidOutputReader:
         :param parser: The name of the parser to use. Default is 'lxml-xml'.
         :type parser: str
         for more unformaton about parsers, see https://beautiful-soup-4.readthedocs.io/en/latest/index.html?highlight=parser#installing-a-parser
+        :param spell_corrector: If True, the text will be spell corrected. The default is True.
+        :type spell_corrector: bool
     
     """
 
-    def __init__(self, parser = "lxml-xml"):
+    def __init__(self, parser = "lxml-xml", spell_corrector = True):
         self.parser = parser
+        self.spell_corrector = spell_corrector
+
+    # calculate the jacaard similarity between two words
+    @staticmethod
+    def jacaard_similarity(x, y):
+        x = set(x)
+        y = set(y)
+        return len(x.intersection(y)) / len(x.union(y))
+
+
+    @staticmethod
+    def correct_spelling(sentence, similarity = jacaard_similarity):
+
+        # regex to find all the words in the sentence with upper case letters from second letter to the end
+        words = re.findall(r"\b\w*[a-z]\w*[A-Z][a-z]*\w*\b", sentence)
+        
+        if len(words) > 0:
+            for word in words:
+                # replace upper case letters with 'f' letter
+                word_f = re.sub(r'[A-Z]', 'f', word)
+                word_blob = Word(word_f)
+                if len(word_blob.spellcheck()) > 1:
+                    # compute the jacaard similarity between the word_f and the all words in the spellcheck list
+                    jacaard_similarities = [similarity(word_f, word[0]) for word in word_blob.spellcheck()]
+                    # find the index of the word with the highest jacaard similarity
+                    index = jacaard_similarities.index(max(jacaard_similarities))
+                    # replace the word with the correct spelling
+                    sentence = sentence.replace(word, word_blob.spellcheck()[index][0])
+                else:
+                    # replace the word with the correct spelling
+                    sentence = sentence.replace(word, word_blob.spellcheck()[0][0])
+        return sentence
 
 
     def XMLtoText(self, xml_file, divide_by_headline = True):
@@ -195,7 +230,10 @@ class GrobidOutputReader:
         # paper sentences
         sentences = soup.find_all('s')
         if sentences:
-            sentences_list = [sentence.text for sentence in sentences if sentence]
+            if self.spell_corrector:
+                sentences_list = [self.correct_spelling(sentence.text) for sentence in sentences]
+            else:
+                sentences_list = [sentence.text for sentence in sentences]
         else:
             sentences_list = ["No Sentences"]
 
@@ -208,5 +246,3 @@ class GrobidOutputReader:
                 'keywords': keywords_list,
                 'sentences': sentences_list
                 }
-
-                
