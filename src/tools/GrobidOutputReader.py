@@ -28,8 +28,7 @@ class GrobidOutputReader:
         return len(x.intersection(y)) / len(x.union(y))
 
 
-    @staticmethod
-    def correct_spelling(sentence, similarity = jacaard_similarity):
+    def correct_spelling(self, sentence, similarity = jacaard_similarity):
 
         # regex to find all the words in the sentence with upper case letters from second letter to the end
         words = re.findall(r"\b\w*[a-z]\w*[A-Z][a-z]*\w*\b", sentence)
@@ -55,7 +54,6 @@ class GrobidOutputReader:
     def XMLtoText(self, xml_file, divide_by_headline = True):
         """
             Reads the xml file and converts it to a plain text file.
-
             Parameters
             ----------
             xml_file : str
@@ -63,12 +61,10 @@ class GrobidOutputReader:
                 Note: Its better to use the absolute path with r before the path.
             divide_by_headline : bool, optional
                 If True, the text will be divided by headlines. The default is True.
-
             Returns
             -------
             str
                 The plain text file.
-
         """
 
         # read the xml file
@@ -146,17 +142,15 @@ class GrobidOutputReader:
         return final_text
     
 
-    def XMLtoDict(self, path):
+    def XMLtoDict(self, path, sentence_len_threshold = 5):
 
         """
             Reads the xml file and converts it to a dictionary.
-
             Parameters
             ----------
             path : str
                 The path to the xml file.
                 Note: Its better to use the absolute path with r before the path.
-
             Returns
             -------
             dict
@@ -185,11 +179,14 @@ class GrobidOutputReader:
 
         # paper title
         title = soup.title
-        if title:
-            title = title.text
-        else:
-            title = "No Title"
 
+        try:
+            title = title.text
+            if len(title)<1:
+                title = "No Title"
+        except:
+            title = "No Title"
+            
         # paper doi
         idno_doi = soup.find('idno', type='DOI')
         if idno_doi:
@@ -213,10 +210,14 @@ class GrobidOutputReader:
 
         # paper authors
         sourceDesc = soup.sourceDesc
-        if sourceDesc:
+        try:
+
             persName = sourceDesc.find_all('persName')
             authors_list = [{'forename': author.forename.text, 'surname': author.surname.text} for author in persName]
-        else:
+            if len(authors_list)<1:
+                authors_list = ["No Authors"]
+          
+        except:
             authors_list = ["No Authors"]
         
         
@@ -231,9 +232,13 @@ class GrobidOutputReader:
         sentences = soup.find_all('s')
         if sentences:
             if self.spell_corrector:
-                sentences_list = [self.correct_spelling(sentence.text) for sentence in sentences]
+                # sentences_list = [self.correct_spelling(sentence.text) for sentence in sentences]
+                # check if the sentence is long enough
+                sentences_list = [self.correct_spelling(sentence.text) for sentence in sentences if len(sentence.text.split()) > sentence_len_threshold]
             else:
-                sentences_list = [sentence.text for sentence in sentences]
+                # sentences_list = [sentence.text for sentence in sentences]
+                # check if the sentence is long enough
+                sentences_list = [sentence.text for sentence in sentences if len(sentence.text.split()) > sentence_len_threshold]
         else:
             sentences_list = ["No Sentences"]
 
