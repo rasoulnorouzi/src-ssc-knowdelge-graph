@@ -1,9 +1,6 @@
 import numpy as np
 
 
-import numpy as np
-import pandas as pd
-
 def compute_fleiss_kappa(data, raters=None, label_mappings=None):
     """
     Compute Fleiss' Kappa for a given DataFrame of raters' judgements.
