@@ -1,0 +1,98 @@
+// Define a function to load data
+function load_data(type, category):
+    // Load the dataset based on type (training or test) and category (general or social science)
+    return dataset
+
+// Define a function to fine-tune a model on a given dataset
+function fine_tune_model(model, training_data):
+    // Fine-tune the model using the provided training data
+    return fine_tuned_model
+
+// Define a function to calculate precision, recall, and F1 score
+function calculate_metrics(true_positives, false_positives, false_negatives):
+    precision = true_positives / (true_positives + false_positives)
+    recall = true_positives / (true_positives + false_negatives)
+    f1_score = 2 * (precision * recall) / (precision + recall)
+    return precision, recall, f1_score
+
+// Define a function to test a model on a given dataset and perform error analysis
+function test_model(model, test_data, positive_label):
+    // Initialize counters for true positives, false positives, and false negatives
+    true_positives = 0
+    false_positives = 0
+    false_negatives = 0
+    // Initialize an empty list to store misclassified sentences
+    misclassified_sentences = []
+    // For each sentence in the test data, predict and compare with the true label
+    for each sentence, true_label in test_data:
+        prediction = model.predict(sentence)
+        if prediction == true_label:
+            if prediction == positive_label:
+                true_positives += 1
+        else:
+            misclassified_sentences.append((sentence, prediction, true_label))
+            if prediction == positive_label:
+                false_positives += 1
+            elif true_label == positive_label:
+                false_negatives += 1
+    // Calculate precision, recall, and F1 score
+    precision, recall, f1_score = calculate_metrics(true_positives, false_positives, false_negatives)
+    // Return the metrics and the misclassified sentences
+    return precision, recall, f1_score, misclassified_sentences
+
+// Define a function to merge datasets
+function merge_datasets(dataset1, dataset2):
+    // Merge two datasets into one
+    return merged_dataset
+
+// Initialize datasets
+general_training_data = load_data("training", "general")
+social_science_training_data = load_data("training", "social_science")
+social_science_test_data = load_data("test", "social_science")
+general_test_data = load_data("test", "general")
+
+// Define the positive label for the classification task
+positive_label = "causal"
+
+// Initialize an empty structure to hold the results and error analysis
+results = {}
+errors = {}
+
+// List of models to evaluate
+models = [model1, model2, model3, model4, model5]
+
+// Evaluation process with error analysis
+for each model in models:
+    // Process 1: Fine-tuning on General training data
+    fine_tuned_general = fine_tune_model(model, general_training_data)
+    results[model]["general_to_social"], errors[model]["general_to_social"] = test_model(fine_tuned_general, social_science_test_data, positive_label)
+    results[model]["general_to_general"], errors[model]["general_to_general"] = test_model(fine_tuned_general, general_test_data, positive_label)
+
+    // Process 2: Fine-tuning on Social Science training data
+    fine_tuned_social = fine_tune_model(model, social_science_training_data)
+    results[model]["social_to_social"], errors[model]["social_to_social"] = test_model(fine_tuned_social, social_science_test_data, positive_label)
+    results[model]["social_to_general"], errors[model]["social_to_general"] = test_model(fine_tuned_social, general_test_data, positive_label)
+
+    // Process 3: Fine-tuning on merged training data (General + Social Science)
+    merged_training_data = merge_datasets(general_training_data, social_science_training_data)
+    fine_tuned_merged = fine_tune_model(model, merged_training_data)
+    results[model]["merged_to_social"], errors[model]["merged_to_social"] = test_model(fine_tuned_merged, social_science_test_data, positive_label)
+    results[model]["merged_to_general"], errors[model]["merged_to_general"] = test_model(fine_tuned_merged, general_test_data, positive_label)
+
+// Output the results and error analysis
+for each model in models:
+    print("Results for", model)
+    // Display test results including precision, recall, and F1 score
+    for each scenario in ["general_to_social", "general_to_general", "social_to_social", "social_to_general", "merged_to_social", "merged_to_general"]:
+        precision, recall, f1_score, _ = results[model][scenario]
+        print("Scenario:", scenario)
+        print("Precision:", precision)
+        print("Recall:", recall)
+        print("F1 Score:", f1_score)
+    // Display error analysis
+    print("Error Analysis for", model)
+    for each scenario, misclassified_list in errors[model]:
+        print("Scenario:", scenario)
+        for each misclassified_sentence in misclassified_list:
+            print("Misclassified Sentence:", misclassified_sentence[0])
+            print("Predicted Label:", misclassified_sentence[1], "True Label:", misclassified_sentence[2])
