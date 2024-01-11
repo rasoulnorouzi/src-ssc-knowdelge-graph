@@ -1,0 +1,1538 @@
+mixed-port: 7890
+allow-lan: false
+log-level: info
+secret: 
+external-controller: 127.0.0.1:9090
+# ipv6: false
+ipv6: true
+#global-client-fingerprint: chrome
+mode: rule
+dns:
+  enable: true
+  use-hosts: true
+  # ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  listen: 127.0.0.1:6868
+  prefer-h3: true #Enable DoH support for HTTP/3,
+  fake-ip-filter:
+     - "first.rnikjeh.shop"
+     - "mailfa.com"
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 1.0.0.1
+  nameserver:
+#    - https://first.rnikjeh.shop/JkykTebJqtY72gd/dns/dns-query
+    - https://8.8.8.8/dns-query#h3=true
+    - https://1.1.1.1/dns-query#PROXY
+    - https://8.8.8.8/dns-query#PROXY
+    - https://1.0.0.1/dns-query#PROXY
+    #- https://8.8.8.8/dns-query#PROXY&h3=true
+    
+    - 8.8.8.8
+    - 1.1.1.1
+profile:
+  # Storing select records
+  store-selected: true
+
+proxy-groups:
+  - name: PROXY
+    proxies:
+      - automatic
+      - sequential 
+      - "khabarcanada.ca reality XTLS direct vless \xA7 443 2"
+      - "first.rnikjeh.shop tls_h2 WS direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls_h2 grpc direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls XTLS direct vless \xA7 443 3"
+      - "first.rnikjeh.shop tls WS direct vless \xA7 443 3"
+      - "first.rnikjeh.shop tls WS direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls WS direct vmess \xA7 443 3"
+      - "first.rnikjeh.shop tls grpc direct vless \xA7 443 3"
+      - "first.rnikjeh.shop tls grpc direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls grpc direct vmess \xA7 443 3"
+      - "first.rnikjeh.shop http WS direct vmess \xA7 80 3"
+      - "br-bp.rnikjeh.shop tls_h2 WS direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls_h2 grpc direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls XTLS direct vless \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls WS direct vless \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls WS direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls WS direct vmess \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls grpc direct vless \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls grpc direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls grpc direct vmess \xA7 443 5"
+      - "br-bp.rnikjeh.shop http WS direct vmess \xA7 80 5"
+      - "first-p.rnikjeh.shop tls_h2 WS CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 WS CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 WS CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 grpc CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 grpc CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 grpc CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop tls WS CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls WS CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls WS CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop tls grpc CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls grpc CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls grpc CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop http WS CDN vmess \xA7 80 6"
+      - "link_bp tls_h2 WS direct trojan \xA7 443 7"
+      - "link_bp tls_h2 grpc direct trojan \xA7 443 7"
+      - "link_bp tls XTLS direct vless \xA7 443 7"
+      - "link_bp tls WS direct vless \xA7 443 7"
+      - "link_bp tls WS direct trojan \xA7 443 7"
+      - "link_bp tls WS direct vmess \xA7 443 7"
+      - "link_bp tls grpc direct vless \xA7 443 7"
+      - "link_bp tls grpc direct trojan \xA7 443 7"
+      - "link_bp tls grpc direct vmess \xA7 443 7"
+      - "link_bp http WS direct vmess \xA7 80 7"
+      - "linkp.norouzishop.link tls_h2 WS CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 WS CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 WS CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 grpc CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 grpc CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 grpc CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link tls WS CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls WS CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls WS CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link tls grpc CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls grpc CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls grpc CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link http WS CDN vmess \xA7 80 8"
+      - "autocdn.norouzishop.link tls_h2 WS CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 WS CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 WS CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 grpc CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 grpc CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 grpc CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link tls WS CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls WS CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls WS CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link tls grpc CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls grpc CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls grpc CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link http WS CDN vmess \xA7 80 9"
+
+      
+    # use:
+    #   %for phttp in hconfigs[ConfigEnum.http_ports].split(',')
+    #   - all_proxies_
+    #   %endfor
+    #   %for ptls in hconfigs[ConfigEnum.tls_ports].split(',')
+    #   - all_proxies_
+    #   %endfor
+    type: select
+
+
+  
+
+  
+
+
+
+  - name: automatic
+    type: fallback
+    url: "http://cp.cloudflare.com"
+    interval: 300
+    proxies:
+        # - "load-balance"
+        - auto
+        - sequential
+        - REJECT
+    lazy: true
+
+
+
+
+  - name: sequential
+    type: fallback
+    url: "http://cp.cloudflare.com"
+    interval: 300
+    proxies:
+      - "khabarcanada.ca reality XTLS direct vless \xA7 443 2"
+      - "first.rnikjeh.shop tls_h2 WS direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls_h2 grpc direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls XTLS direct vless \xA7 443 3"
+      - "first.rnikjeh.shop tls WS direct vless \xA7 443 3"
+      - "first.rnikjeh.shop tls WS direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls WS direct vmess \xA7 443 3"
+      - "first.rnikjeh.shop tls grpc direct vless \xA7 443 3"
+      - "first.rnikjeh.shop tls grpc direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls grpc direct vmess \xA7 443 3"
+      - "first.rnikjeh.shop http WS direct vmess \xA7 80 3"
+      - "br-bp.rnikjeh.shop tls_h2 WS direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls_h2 grpc direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls XTLS direct vless \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls WS direct vless \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls WS direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls WS direct vmess \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls grpc direct vless \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls grpc direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls grpc direct vmess \xA7 443 5"
+      - "br-bp.rnikjeh.shop http WS direct vmess \xA7 80 5"
+      - "first-p.rnikjeh.shop tls_h2 WS CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 WS CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 WS CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 grpc CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 grpc CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 grpc CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop tls WS CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls WS CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls WS CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop tls grpc CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls grpc CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls grpc CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop http WS CDN vmess \xA7 80 6"
+      - "link_bp tls_h2 WS direct trojan \xA7 443 7"
+      - "link_bp tls_h2 grpc direct trojan \xA7 443 7"
+      - "link_bp tls XTLS direct vless \xA7 443 7"
+      - "link_bp tls WS direct vless \xA7 443 7"
+      - "link_bp tls WS direct trojan \xA7 443 7"
+      - "link_bp tls WS direct vmess \xA7 443 7"
+      - "link_bp tls grpc direct vless \xA7 443 7"
+      - "link_bp tls grpc direct trojan \xA7 443 7"
+      - "link_bp tls grpc direct vmess \xA7 443 7"
+      - "link_bp http WS direct vmess \xA7 80 7"
+      - "linkp.norouzishop.link tls_h2 WS CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 WS CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 WS CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 grpc CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 grpc CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 grpc CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link tls WS CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls WS CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls WS CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link tls grpc CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls grpc CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls grpc CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link http WS CDN vmess \xA7 80 8"
+      - "autocdn.norouzishop.link tls_h2 WS CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 WS CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 WS CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 grpc CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 grpc CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 grpc CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link tls WS CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls WS CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls WS CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link tls grpc CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls grpc CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls grpc CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link http WS CDN vmess \xA7 80 9"
+
+    # use:
+    #   %for phttp in hconfigs[ConfigEnum.http_ports].split(',')
+    #   - all_proxies_
+    #   %endfor
+    #   %for ptls in hconfigs[ConfigEnum.tls_ports].split(',')
+    #   - all_proxies_
+    #   %endfor
+
+  - name: auto
+    proxies:
+      - "khabarcanada.ca reality XTLS direct vless \xA7 443 2"
+      - "first.rnikjeh.shop tls_h2 WS direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls_h2 grpc direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls XTLS direct vless \xA7 443 3"
+      - "first.rnikjeh.shop tls WS direct vless \xA7 443 3"
+      - "first.rnikjeh.shop tls WS direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls WS direct vmess \xA7 443 3"
+      - "first.rnikjeh.shop tls grpc direct vless \xA7 443 3"
+      - "first.rnikjeh.shop tls grpc direct trojan \xA7 443 3"
+      - "first.rnikjeh.shop tls grpc direct vmess \xA7 443 3"
+      - "first.rnikjeh.shop http WS direct vmess \xA7 80 3"
+      - "br-bp.rnikjeh.shop tls_h2 WS direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls_h2 grpc direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls XTLS direct vless \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls WS direct vless \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls WS direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls WS direct vmess \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls grpc direct vless \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls grpc direct trojan \xA7 443 5"
+      - "br-bp.rnikjeh.shop tls grpc direct vmess \xA7 443 5"
+      - "br-bp.rnikjeh.shop http WS direct vmess \xA7 80 5"
+      - "first-p.rnikjeh.shop tls_h2 WS CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 WS CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 WS CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 grpc CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 grpc CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls_h2 grpc CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop tls WS CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls WS CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls WS CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop tls grpc CDN vless \xA7 443 6"
+      - "first-p.rnikjeh.shop tls grpc CDN trojan \xA7 443 6"
+      - "first-p.rnikjeh.shop tls grpc CDN vmess \xA7 443 6"
+      - "first-p.rnikjeh.shop http WS CDN vmess \xA7 80 6"
+      - "link_bp tls_h2 WS direct trojan \xA7 443 7"
+      - "link_bp tls_h2 grpc direct trojan \xA7 443 7"
+      - "link_bp tls XTLS direct vless \xA7 443 7"
+      - "link_bp tls WS direct vless \xA7 443 7"
+      - "link_bp tls WS direct trojan \xA7 443 7"
+      - "link_bp tls WS direct vmess \xA7 443 7"
+      - "link_bp tls grpc direct vless \xA7 443 7"
+      - "link_bp tls grpc direct trojan \xA7 443 7"
+      - "link_bp tls grpc direct vmess \xA7 443 7"
+      - "link_bp http WS direct vmess \xA7 80 7"
+      - "linkp.norouzishop.link tls_h2 WS CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 WS CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 WS CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 grpc CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 grpc CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls_h2 grpc CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link tls WS CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls WS CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls WS CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link tls grpc CDN vless \xA7 443 8"
+      - "linkp.norouzishop.link tls grpc CDN trojan \xA7 443 8"
+      - "linkp.norouzishop.link tls grpc CDN vmess \xA7 443 8"
+      - "linkp.norouzishop.link http WS CDN vmess \xA7 80 8"
+      - "autocdn.norouzishop.link tls_h2 WS CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 WS CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 WS CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 grpc CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 grpc CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls_h2 grpc CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link tls WS CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls WS CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls WS CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link tls grpc CDN vless \xA7 443 9"
+      - "autocdn.norouzishop.link tls grpc CDN trojan \xA7 443 9"
+      - "autocdn.norouzishop.link tls grpc CDN vmess \xA7 443 9"
+      - "autocdn.norouzishop.link http WS CDN vmess \xA7 80 9"
+
+    # use:
+    #   %for phttp in hconfigs[ConfigEnum.http_ports].split(',')
+    #   - all_proxies_
+    #   %endfor
+    #   %for ptls in hconfigs[ConfigEnum.tls_ports].split(',')
+    #   - all_proxies_
+    #   %endfor
+
+    type: url-test
+    url: http://cp.cloudflare.com
+    interval: 300
+    tolerance: 150
+    lazy: true
+
+
+     
+proxies:
+- name: "khabarcanada.ca reality XTLS direct vless \xA7 443 2"
+  type: vless
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: khabarcanada.ca
+  tls: true
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  udp: true
+  skip-cert-verify: false
+  network: tcp
+  reality-opts:
+    public-key: KGhd8dfRFF9EL_zPiu093W8pp4kEMFyPDOtERK5-Cks
+    short-id: ef5308
+- name: "first.rnikjeh.shop tls_h2 WS direct trojan \xA7 443 3"
+  type: trojan
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: first.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: first.rnikjeh.shop
+- name: "first.rnikjeh.shop tls_h2 grpc direct trojan \xA7 443 3"
+  type: trojan
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: first.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "first.rnikjeh.shop tls XTLS direct vless \xA7 443 3"
+  type: vless
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  udp: true
+  skip-cert-verify: false
+  network: http
+- name: "first.rnikjeh.shop tls WS direct vless \xA7 443 3"
+  type: vless
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /1At4f7ssBe2P9Fo3fkt9y4
+    headers:
+      Host: first.rnikjeh.shop
+- name: "first.rnikjeh.shop tls WS direct trojan \xA7 443 3"
+  type: trojan
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: first.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: first.rnikjeh.shop
+- name: "first.rnikjeh.shop tls WS direct vmess \xA7 443 3"
+  type: vmess
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: first.rnikjeh.shop
+- name: "first.rnikjeh.shop tls grpc direct vless \xA7 443 3"
+  type: vless
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: 1At4f7ssBe2P9xtMbm9SRev
+- name: "first.rnikjeh.shop tls grpc direct trojan \xA7 443 3"
+  type: trojan
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: first.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "first.rnikjeh.shop tls grpc direct vmess \xA7 443 3"
+  type: vmess
+  server: first.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: kSY4KXcsBmCgJEExtMbm9SRev
+- name: "first.rnikjeh.shop http WS direct vmess \xA7 80 3"
+  type: vmess
+  server: first.rnikjeh.shop
+  port: 80
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first.rnikjeh.shop
+  tls: false
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: first.rnikjeh.shop
+- name: "br-bp.rnikjeh.shop tls_h2 WS direct trojan \xA7 443 5"
+  type: trojan
+  server: br-bp.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: br-bp.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: br-bp.rnikjeh.shop
+- name: "br-bp.rnikjeh.shop tls_h2 grpc direct trojan \xA7 443 5"
+  type: trojan
+  server: br-bp.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: br-bp.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "br-bp.rnikjeh.shop tls XTLS direct vless \xA7 443 5"
+  type: vless
+  server: br-bp.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: br-bp.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  udp: true
+  skip-cert-verify: false
+  network: http
+- name: "br-bp.rnikjeh.shop tls WS direct vless \xA7 443 5"
+  type: vless
+  server: br-bp.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: br-bp.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /1At4f7ssBe2P9Fo3fkt9y4
+    headers:
+      Host: br-bp.rnikjeh.shop
+- name: "br-bp.rnikjeh.shop tls WS direct trojan \xA7 443 5"
+  type: trojan
+  server: br-bp.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: br-bp.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: br-bp.rnikjeh.shop
+- name: "br-bp.rnikjeh.shop tls WS direct vmess \xA7 443 5"
+  type: vmess
+  server: br-bp.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: br-bp.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: br-bp.rnikjeh.shop
+- name: "br-bp.rnikjeh.shop tls grpc direct vless \xA7 443 5"
+  type: vless
+  server: br-bp.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: br-bp.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: 1At4f7ssBe2P9xtMbm9SRev
+- name: "br-bp.rnikjeh.shop tls grpc direct trojan \xA7 443 5"
+  type: trojan
+  server: br-bp.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: br-bp.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "br-bp.rnikjeh.shop tls grpc direct vmess \xA7 443 5"
+  type: vmess
+  server: br-bp.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: br-bp.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: kSY4KXcsBmCgJEExtMbm9SRev
+- name: "br-bp.rnikjeh.shop http WS direct vmess \xA7 80 5"
+  type: vmess
+  server: br-bp.rnikjeh.shop
+  port: 80
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: br-bp.rnikjeh.shop
+  tls: false
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: br-bp.rnikjeh.shop
+- name: "first-p.rnikjeh.shop tls_h2 WS CDN vless \xA7 443 6"
+  type: vless
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first-p.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /1At4f7ssBe2P9Fo3fkt9y4
+    headers:
+      Host: first-p.rnikjeh.shop
+- name: "first-p.rnikjeh.shop tls_h2 WS CDN trojan \xA7 443 6"
+  type: trojan
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: first-p.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: first-p.rnikjeh.shop
+- name: "first-p.rnikjeh.shop tls_h2 WS CDN vmess \xA7 443 6"
+  type: vmess
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first-p.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: first-p.rnikjeh.shop
+- name: "first-p.rnikjeh.shop tls_h2 grpc CDN vless \xA7 443 6"
+  type: vless
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first-p.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: 1At4f7ssBe2P9xtMbm9SRev
+- name: "first-p.rnikjeh.shop tls_h2 grpc CDN trojan \xA7 443 6"
+  type: trojan
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: first-p.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "first-p.rnikjeh.shop tls_h2 grpc CDN vmess \xA7 443 6"
+  type: vmess
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first-p.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: kSY4KXcsBmCgJEExtMbm9SRev
+- name: "first-p.rnikjeh.shop tls WS CDN vless \xA7 443 6"
+  type: vless
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first-p.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /1At4f7ssBe2P9Fo3fkt9y4
+    headers:
+      Host: first-p.rnikjeh.shop
+- name: "first-p.rnikjeh.shop tls WS CDN trojan \xA7 443 6"
+  type: trojan
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: first-p.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: first-p.rnikjeh.shop
+- name: "first-p.rnikjeh.shop tls WS CDN vmess \xA7 443 6"
+  type: vmess
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first-p.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: first-p.rnikjeh.shop
+- name: "first-p.rnikjeh.shop tls grpc CDN vless \xA7 443 6"
+  type: vless
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first-p.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: 1At4f7ssBe2P9xtMbm9SRev
+- name: "first-p.rnikjeh.shop tls grpc CDN trojan \xA7 443 6"
+  type: trojan
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: first-p.rnikjeh.shop
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "first-p.rnikjeh.shop tls grpc CDN vmess \xA7 443 6"
+  type: vmess
+  server: first-p.rnikjeh.shop
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first-p.rnikjeh.shop
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: kSY4KXcsBmCgJEExtMbm9SRev
+- name: "first-p.rnikjeh.shop http WS CDN vmess \xA7 80 6"
+  type: vmess
+  server: first-p.rnikjeh.shop
+  port: 80
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: first-p.rnikjeh.shop
+  tls: false
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: first-p.rnikjeh.shop
+- name: "link_bp tls_h2 WS direct trojan \xA7 443 7"
+  type: trojan
+  server: linkbp.norouzishop.link
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: linkbp.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: linkbp.norouzishop.link
+- name: "link_bp tls_h2 grpc direct trojan \xA7 443 7"
+  type: trojan
+  server: linkbp.norouzishop.link
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: linkbp.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "link_bp tls XTLS direct vless \xA7 443 7"
+  type: vless
+  server: linkbp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkbp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  udp: true
+  skip-cert-verify: false
+  network: http
+- name: "link_bp tls WS direct vless \xA7 443 7"
+  type: vless
+  server: linkbp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkbp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /1At4f7ssBe2P9Fo3fkt9y4
+    headers:
+      Host: linkbp.norouzishop.link
+- name: "link_bp tls WS direct trojan \xA7 443 7"
+  type: trojan
+  server: linkbp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: linkbp.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: linkbp.norouzishop.link
+- name: "link_bp tls WS direct vmess \xA7 443 7"
+  type: vmess
+  server: linkbp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkbp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: linkbp.norouzishop.link
+- name: "link_bp tls grpc direct vless \xA7 443 7"
+  type: vless
+  server: linkbp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkbp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: 1At4f7ssBe2P9xtMbm9SRev
+- name: "link_bp tls grpc direct trojan \xA7 443 7"
+  type: trojan
+  server: linkbp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: linkbp.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "link_bp tls grpc direct vmess \xA7 443 7"
+  type: vmess
+  server: linkbp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkbp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: kSY4KXcsBmCgJEExtMbm9SRev
+- name: "link_bp http WS direct vmess \xA7 80 7"
+  type: vmess
+  server: linkbp.norouzishop.link
+  port: 80
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkbp.norouzishop.link
+  tls: false
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: linkbp.norouzishop.link
+- name: "linkp.norouzishop.link tls_h2 WS CDN vless \xA7 443 8"
+  type: vless
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /1At4f7ssBe2P9Fo3fkt9y4
+    headers:
+      Host: linkp.norouzishop.link
+- name: "linkp.norouzishop.link tls_h2 WS CDN trojan \xA7 443 8"
+  type: trojan
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: linkp.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: linkp.norouzishop.link
+- name: "linkp.norouzishop.link tls_h2 WS CDN vmess \xA7 443 8"
+  type: vmess
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: linkp.norouzishop.link
+- name: "linkp.norouzishop.link tls_h2 grpc CDN vless \xA7 443 8"
+  type: vless
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: 1At4f7ssBe2P9xtMbm9SRev
+- name: "linkp.norouzishop.link tls_h2 grpc CDN trojan \xA7 443 8"
+  type: trojan
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: linkp.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "linkp.norouzishop.link tls_h2 grpc CDN vmess \xA7 443 8"
+  type: vmess
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: kSY4KXcsBmCgJEExtMbm9SRev
+- name: "linkp.norouzishop.link tls WS CDN vless \xA7 443 8"
+  type: vless
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /1At4f7ssBe2P9Fo3fkt9y4
+    headers:
+      Host: linkp.norouzishop.link
+- name: "linkp.norouzishop.link tls WS CDN trojan \xA7 443 8"
+  type: trojan
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: linkp.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: linkp.norouzishop.link
+- name: "linkp.norouzishop.link tls WS CDN vmess \xA7 443 8"
+  type: vmess
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: linkp.norouzishop.link
+- name: "linkp.norouzishop.link tls grpc CDN vless \xA7 443 8"
+  type: vless
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: 1At4f7ssBe2P9xtMbm9SRev
+- name: "linkp.norouzishop.link tls grpc CDN trojan \xA7 443 8"
+  type: trojan
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: linkp.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "linkp.norouzishop.link tls grpc CDN vmess \xA7 443 8"
+  type: vmess
+  server: linkp.norouzishop.link
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkp.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: kSY4KXcsBmCgJEExtMbm9SRev
+- name: "linkp.norouzishop.link http WS CDN vmess \xA7 80 8"
+  type: vmess
+  server: linkp.norouzishop.link
+  port: 80
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: linkp.norouzishop.link
+  tls: false
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: linkp.norouzishop.link
+- name: "autocdn.norouzishop.link tls_h2 WS CDN vless \xA7 443 9"
+  type: vless
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: autocdn.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /1At4f7ssBe2P9Fo3fkt9y4
+    headers:
+      Host: autocdn.norouzishop.link
+- name: "autocdn.norouzishop.link tls_h2 WS CDN trojan \xA7 443 9"
+  type: trojan
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: autocdn.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: autocdn.norouzishop.link
+- name: "autocdn.norouzishop.link tls_h2 WS CDN vmess \xA7 443 9"
+  type: vmess
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: autocdn.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: autocdn.norouzishop.link
+- name: "autocdn.norouzishop.link tls_h2 grpc CDN vless \xA7 443 9"
+  type: vless
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: autocdn.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: 1At4f7ssBe2P9xtMbm9SRev
+- name: "autocdn.norouzishop.link tls_h2 grpc CDN trojan \xA7 443 9"
+  type: trojan
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - h2
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: autocdn.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "autocdn.norouzishop.link tls_h2 grpc CDN vmess \xA7 443 9"
+  type: vmess
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - h2
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: autocdn.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: kSY4KXcsBmCgJEExtMbm9SRev
+- name: "autocdn.norouzishop.link tls WS CDN vless \xA7 443 9"
+  type: vless
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: autocdn.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /1At4f7ssBe2P9Fo3fkt9y4
+    headers:
+      Host: autocdn.norouzishop.link
+- name: "autocdn.norouzishop.link tls WS CDN trojan \xA7 443 9"
+  type: trojan
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: autocdn.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /LR0IUPjtYdXyFo3fkt9y4
+    headers:
+      Host: autocdn.norouzishop.link
+- name: "autocdn.norouzishop.link tls WS CDN vmess \xA7 443 9"
+  type: vmess
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: autocdn.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: autocdn.norouzishop.link
+- name: "autocdn.norouzishop.link tls grpc CDN vless \xA7 443 9"
+  type: vless
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: autocdn.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: 1At4f7ssBe2P9xtMbm9SRev
+- name: "autocdn.norouzishop.link tls grpc CDN trojan \xA7 443 9"
+  type: trojan
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - http/1.1
+  password: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  sni: autocdn.norouzishop.link
+  client-fingerprint: chrome
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: LR0IUPjtYdXyxtMbm9SRev
+- name: "autocdn.norouzishop.link tls grpc CDN vmess \xA7 443 9"
+  type: vmess
+  server: 162.159.62.69
+  port: 443
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: autocdn.norouzishop.link
+  tls: true
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: grpc
+  grpc-opts:
+    grpc-service-name: kSY4KXcsBmCgJEExtMbm9SRev
+- name: "autocdn.norouzishop.link http WS CDN vmess \xA7 80 9"
+  type: vmess
+  server: 162.159.62.69
+  port: 80
+  alpn:
+  - http/1.1
+  uuid: ae41d11b-4340-40ee-afd0-bdeaacb20a70
+  servername: autocdn.norouzishop.link
+  tls: false
+  client-fingerprint: chrome
+  alterId: 0
+  cipher: chacha20-poly1305
+  udp: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /kSY4KXcsBmCgJEEFo3fkt9y4
+    headers:
+      Host: autocdn.norouzishop.link
+
+
+# proxy-providers:
+#   %for t in (['http','tls'] if hconfigs[ConfigEnum.http_proxy_enable] else ['tls'])
+#   %for port in hconfigs[ConfigEnum.http_ports if t=='http' else ConfigEnum.tls_ports].split(',')
+#   %set phttp=port if t=='http' else None
+#   %set ptls=port if t=='tls' else None
+#   all_proxies_:
+#     type: http
+#     url: "https://first.rnikjeh.shop/JkykTebJqtY72gd/ae41d11b-4340-40ee-afd0-bdeaacb20a70/clash/meta/proxies.yml?mode=new&ptls=&phttp=&710895"
+#     # path: first.rnikjeh.shop/ae41d11b-4340-40ee-afd0-bdeaacb20a70-meta---proxies710895.yaml
+#     path: first.rnikjeh.shop/--710895.yaml
+#     health-check:
+#       enable: true
+#       interval: 600
+#       url: http://www.gstatic.com/generate_204    
+#   %endfor
+#   %endfor
+rule-providers:
+
+  blocked:
+    type: http
+    behavior: classical
+    url: "https://first.rnikjeh.shop/JkykTebJqtY72gd/clash/rules/blocked-sites.yml"
+    path: ./ruleset/blocked.yaml
+    interval: 432000
+
+  tmpblocked:
+    type: http
+    behavior: classical
+    url: "https://first.rnikjeh.shop/JkykTebJqtY72gd/clash/rules/tmp-blocked-sites.yml"
+    path: ./ruleset/tmpblocked.yaml
+    interval: 432000
+
+  open:
+    type: http
+    behavior: classical
+    url: "https://first.rnikjeh.shop/JkykTebJqtY72gd/clash/rules/open-sites.yml"
+    path: ./ruleset/open.yaml
+    interval: 432000    
+
+  # ads:
+  #   type: http
+  #   behavior: classical
+  #   url: "https://first.rnikjeh.shop/JkykTebJqtY72gd/clash/rules/ads-sites.yml"
+  #   path: ./ruleset/ads.yaml
+  #   interval: 432000   
+
+rules:
+  - DOMAIN,mailfa.com,DIRECT
+  # - DOMAIN,first.rnikjeh.shop,DIRECT
+  # - DOMAIN,,DIRECT
+  # - IP-CIDR,/32,DIRECT
+  - IP-CIDR,10.10.34.0/24,PROXY
+  - RULE-SET,tmpblocked,PROXY
+  - RULE-SET,blocked,PROXY
+  # - IP-CIDR,10.10.34.0/24,REJECT
+  # - RULE-SET,tmpblocked,REJECT
+  # - RULE-SET,blocked,REJECT
+  - GEOIP,IR,PROXY
+  - DOMAIN-SUFFIX,.ir,PROXY
+  - RULE-SET,open,PROXY
+  # - RULE-SET,ads,REJECT
+  - MATCH,PROXY
+
+
+tun:
+  enable: true
+  stack: system # or gvisor
+  dns-hijack:
+    - any:53
+  auto-redir: true
+  auto-route: true
+  auto-detect-interface: true
